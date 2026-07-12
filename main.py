@@ -1,24 +1,9 @@
 import numpy as np
 from exports import crear_img, mostrar_img
 
-tamaño = 100 
-divisores= [3, 5, 15]#17, 51, 85
-x= divisores[0] #3
-y= 255/x        #85
+tamaño = 21 
 
-def print_matriz(matriz):
-    for i in range(matriz.shape[0]):
-        for j in range(matriz.shape[1]):
-            print(f"Pixel ({i}, {j}): {matriz[i, j]}")
-    return
-
-def valores_random(matriz):
-    for i in range(tamaño):
-        for j in range(tamaño):
-            #matriz[i, j] = np.random.randint(0, 255, size=3)
-            matriz[i,j]= np.random.randint(0, x, size=3)
-            matriz[i,j]= matriz[i,j]*y
-    return matriz
+estampa= np.zeros((7, 7, 3), dtype=np.uint8)
 
 def valores_rgb(matriz):
     for i in range(tamaño):
@@ -35,9 +20,13 @@ def valores_rgb(matriz):
             
     return matriz
 
-matriz_ejemplo = np.full((tamaño, tamaño, 3), [255, 255, 255], dtype=np.uint8)
+matriz = np.full((tamaño, tamaño, 3), [255, 255, 255], dtype=np.uint8)
+
+#
+# cada pixel puede ser de 4 valores: 0=negro, 1=rojo, 2=verde, 3=azul
+#
 
 
-#print_matriz(matriz_ejemplo)
-matriz = valores_rgb(matriz_ejemplo)
-mostrar_img(crear_img(matriz), 4)
+#print_matriz(matriz)
+matriz = valores_rgb(matriz)
+mostrar_img(crear_img(matriz), 10)
